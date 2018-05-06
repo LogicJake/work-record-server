@@ -26,3 +26,12 @@ http://api.logicjake.xyz/work-record/?_action=signUp
     }
 }
 ```
+#### 手机号已经被注册，status=2
+```
+{
+    "code": 0,
+    "data": {
+        "status": 2
+    }
+}
+```
