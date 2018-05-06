@@ -1,15 +1,12 @@
 <?php
 function addExperience($id,$experience){
-    $arr = explode(",",$experience);
     $data = array();
+    $arr = json_decode($experience,true);
     foreach($arr as $a){
-        $left = stripos($a,"(");
-        $right = stripos($a,")");
-        $field = substr($a,0,$left);
-        $year = substr($a,$left+1,$right-$left-1);
-        $tmp['field'] = $field;
+       
+        $tmp['field'] = $a['experience'];
         $tmp['user_id'] = $id;
-        $tmp['year'] = $year;
+        $tmp['year'] = $a['year'];
         array_push($data,$tmp);
     }
     global $db;

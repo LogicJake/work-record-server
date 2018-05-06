@@ -1,12 +1,12 @@
 <?php
 require_once './include/user.function.php';
-if(isset($_POST['type'])){          //根据type决定是民工注册还是企业注册 0：民工；1：企业
-    if($_POST['type'] == 0 && isset($_POST['name'],$_POST['age'],$_POST['phone'],$_POST['password'],$_POST['experience'])){
-        $res = signUpWorker($_POST['name'],$_POST['age'],$_POST['phone'],$_POST['experience'],$_POST['password']);
+if(isset($_GET['type'])){          //根据type决定是民工注册还是企业注册 0：民工；1：企业
+    if($_GET['type'] == 1 && isset($_GET['name'],$_GET['age'],$_GET['phone'],$_GET['password'],$_GET['experience'])){
+        $res = signUpWorker($_GET['name'],$_GET['age'],$_GET['phone'],$_GET['experience'],$_GET['password']);
         Result::success($res);
     }
-    elseif($_POST['type'] == 1){
-        $res = signUpWorker($_POST['name'],$_POST['age'],$_POST['phone'],$_POST['experience']);
+    elseif($_GET['type'] == 0){
+        $res = signUpWorker($_GET['name'],$_GET['age'],$_GET['phone'],$_GET['experience']);
         Result::success($res);
     }
     else
