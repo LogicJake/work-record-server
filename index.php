@@ -5,16 +5,16 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 session_start();
 
-//require_once './include/Medoo.php';
-//require_once './include/config.php';
+require_once './include/Medoo.php';
+require_once './include/config.php';
 require_once './include/result.class.php';
 require_once './include/token.class.php';
 
 
 // white list
-$actionList = ['addRecord','calHour'];          //所有action列表
+$actionList = ['signUp','addRecord','calHour'];          //所有action列表
 
-$noTokenList = ['addRecord','calHour'];         //不需要token的action
+$noTokenList = ['signUp','addRecord','calHour'];         //不需要token的action
 
 if (!isset($_GET['_action'])) {
     Result::error('missing _action');
