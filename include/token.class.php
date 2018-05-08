@@ -45,7 +45,7 @@ class Token {
      */
     public static function addToken($uid, $expireTime = 60*60) {
         global $db;
-        $tokenSalt = '安全驾驶';
+        $tokenSalt = '工作记录';
         $tokenName = md5($tokenSalt . time() . $uid . $tokenSalt);
         $db->delete('token',[               //删除之前token
             'userid' => $uid
