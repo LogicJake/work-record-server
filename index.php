@@ -12,9 +12,9 @@ require_once './include/token.class.php';
 
 
 // white list
-$actionList = ['signUp','addRecord','calHour'];          //所有action列表
+$actionList = ['signUp','addRecord','calHour','login'];          //所有action列表
 
-$noTokenList = ['signUp','addRecord','calHour'];         //不需要token的action
+$noTokenList = ['signUp','addRecord','calHour','login'];         //不需要token的action
 
 if (!isset($_GET['_action'])) {
     Result::error('missing _action');
