@@ -66,37 +66,58 @@ function signUpWorker($name,$age,$phone,$experience,$password){
     return $return;
 }
 
-function login($type,$phone,$password){
+function loginWorker($type,$phone,$password){
     global $db;
-    switch($type)
-    {
-        case 1:
-            $res = $db->has("worker",[
-               "phone" => $phone
-            ]); 
-            if(!$res)
-                $ret['status'] = 0;   //0代表该手机号未注册
-            else
-            {
-                $res = $db->has("worker",[
-                    "phone" => $phone,
-                    "password" => $password
-                ]); 
-                if($res){
-                    $id = $db->get("worker","id",[
-                        "phone" => $phone,
-                        "password" => $password
-                    ]); 
-                    $ret['id'] = $id;
-                    $ret['status'] = 1;   //1代表成功
-                    $ret['token'] = Token::addToken(1,$id);
-                }
-                else
-                    $ret['status'] = -1;   //-1代表失败
-            } 
-            return $ret;
-            break;
-        case 0:
-            break;
-    }
+    $res = $db->has("worker",[
+        "phone" => $phone
+     ]); 
+     if(!$res)
+         $ret['status'] = 0;   //0代表该手机号未注册
+     else
+     {
+         $res = $db->has("worker",[
+             "phone" => $phone,
+             "password" => $password
+         ]); 
+         if($res){
+             $id = $db->get("worker","id",[
+                 "phone" => $phone,
+                 "password" => $password
+             ]); 
+             $ret['id'] = $id;
+             $ret['status'] = 1;   //1代表成功
+             $ret['token'] = Token::addToken(1,$id);
+         }
+         else
+             $ret['status'] = -1;   //-1代表失败
+     } 
+     return $ret;
+}
+
+function loginCampany($type,$number,$password){
+    global $db;
+    $res = $db->has("company",[
+        "number" => $number
+     ]); 
+     if(!$res)
+         $ret['status'] = 0;   //0代表该手机号未注册
+     else
+     {
+         $res = $db->has("company",[
+             "number" => $number,
+             "password" => $password
+         ]); 
+         if($res){
+             $id = $db->get("company","id",[
+                 "number" => $number,
+                 "password" => $password
+             ]); 
+             $ret['id'] = $id;
+             $ret['status'] = 1;   //1代表成功
+             $ret['token'] = Token::addToken(1,$id);
+         }
+         else
+             $ret['status'] = -1;   //-1代表失败
+     } 
+     return $ret;
 }

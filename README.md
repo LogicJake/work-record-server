@@ -115,3 +115,44 @@ http://api.logicjake.xyz/work-record/?_action=signUp
     }
 }
 ```
+## 2. 公司登陆（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=login
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| type       | 0       |
+| number      | 91320102716209711G |
+| password   | abcdef    |
+### 说明
+* type固定值为0  
+### 返回值
+#### 成功，返回id和token，status=1
+```
+{
+  "code": 0,
+  "data": {
+    "id": "1",
+    "status": 1,
+    "token": "66e174c1d373db83b3c501b6b3d610a2"
+  }
+}
+```
+#### 未被注册，status=0
+```
+{
+  "code": 0,
+  "data": {
+    "status": 0
+  }
+}
+```
+#### 密码错误，status=-1
+```
+{
+  "code": 0,
+  "data": {
+    "status": -1
+  }
+}
+```
