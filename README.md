@@ -115,3 +115,70 @@ http://api.logicjake.xyz/work-record/?_action=signUp
     }
 }
 ```
+## 2. 公司登陆（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=login
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| type       | 0       |
+| number      | 91320102716209711G |
+| password   | abcdef    |
+### 说明
+* type固定值为0  
+### 返回值
+#### 成功，返回id和token，status=1
+```
+{
+  "code": 0,
+  "data": {
+    "id": "1",
+    "status": 1,
+    "token": "66e174c1d373db83b3c501b6b3d610a2"
+  }
+}
+```
+#### 未被注册，status=0
+```
+{
+  "code": 0,
+  "data": {
+    "status": 0
+  }
+}
+```
+#### 密码错误，status=-1
+```
+{
+  "code": 0,
+  "data": {
+    "status": -1
+  }
+}
+```
+## 3. 公司发布工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=releaseWork
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf       |
+|address|南京|
+|phone|13222222|
+|wages|[{"type":"家装主材安装","wage":100},{"type":"电器安装维修","wage":110}]|
+|house|板房|
+|welfare|高温补贴|
+### 说明
+* wages为招聘工种和对应工资  
+* house为住房条件
+* welfare为福利 
+### 返回值
+#### 成功，status=1
+```
+{
+    "code": 0,
+    "data": {
+        "status": 1
+    }
+}
+```
