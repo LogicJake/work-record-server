@@ -83,4 +83,14 @@ class Token {
             ]);
         }
     }
+
+    public static function isCompany($token) {
+        global $db;
+        $type = $db->get("token",
+            "type", [
+            "tokenName" => $token
+        ]);
+        if($type == 0)
+            return true;
+    }
 }
