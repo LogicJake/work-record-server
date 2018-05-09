@@ -35,6 +35,39 @@ CREATE TABLE `company` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `task`
+--
+
+DROP TABLE IF EXISTS `task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `address` varchar(100) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `house` varchar(20) NOT NULL,
+  `welfare` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `task_wages`
+--
+
+DROP TABLE IF EXISTS `task_wages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task_wages` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `task_id` int(10) NOT NULL,
+  `field` varchar(10) NOT NULL,
+  `wage` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `token`
 --
 
@@ -48,7 +81,7 @@ CREATE TABLE `token` (
   `expire` int(11) NOT NULL,
   `type` int(1) NOT NULL COMMENT '类型',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +95,7 @@ CREATE TABLE `worker` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
   `age` int(3) NOT NULL,
-  `phone` varchar(13) NOT NULL,
+  `phone` varchar(11) NOT NULL,
   `password` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone` (`phone`)
@@ -82,7 +115,7 @@ CREATE TABLE `worker_experience` (
   `field` varchar(10) NOT NULL,
   `year` int(3) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,4 +135,4 @@ CREATE TABLE `worker_experience` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-09 19:55:54
+-- Dump completed on 2018-05-09 21:50:29

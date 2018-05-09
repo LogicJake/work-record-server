@@ -156,3 +156,29 @@ http://api.logicjake.xyz/work-record/?_action=login
   }
 }
 ```
+## 3. 公司发布工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=releaseWork
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf       |
+|address|南京|
+|phone|13222222|
+|wages|[{"type":"家装主材安装","wage":100},{"type":"电器安装维修","wage":110}]|
+|house|板房|
+|welfare|高温补贴|
+### 说明
+* wages为招聘工种和对应工资  
+* house为住房条件
+* welfare为福利 
+### 返回值
+#### 成功，status=1
+```
+{
+    "code": 0,
+    "data": {
+        "status": 1
+    }
+}
+```
