@@ -43,16 +43,18 @@ class Token {
      * @param [int] 过期时间 默认为60分钟
      * @return token名
      */
-    public static function addToken($uid, $expireTime = 60*60) {
+    public static function addToken($type, $uid, $expireTime = 60*60) {
         global $db;
         $tokenSalt = '工作记录';
-        $tokenName = md5($tokenSalt . time() . $uid . $tokenSalt);
+        $tokenName = md5($tokenSalt . time() . $uid . $tokenSalt.$type);
         $db->delete('token',[               //删除之前token
-            'userid' => $uid
+            'userid' => $uid,
+            'type' => $type
         ]);
         $db->insert('token',[               //插入最新token
             'userid' => $uid,
             'tokenName' => $tokenName,
+            'type' => $type,
             'expire' => time() + $expireTime
         ]);
 
@@ -66,15 +68,17 @@ class Token {
      * @param integer $token 传入要删除的token 只有在不传入uid的时候起效
      * @return void
      */
-    public static function deleteToken($uid = -1, $token = -1) {
+    public static function deleteToken($uid = -1, $token = -1,$type) {
         global $db;
 
         if($uid != -1) {
             $db->delete('token',[
+                'type' => $type,
                 'userid' => $uid
             ]);
         } else {
             $db->delete('token',[
+                'type' => $type,
                 'tokenName' => token
             ]);
         }
