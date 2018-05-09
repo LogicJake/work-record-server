@@ -13,6 +13,33 @@ function addExperience($id,$experience){
     $db->insert("worker_experience", $data);
 }
 
+function signUpCompany($name,$phone,$mail,$address,$number,$password){
+    global $db;
+    $re =$db->has("company", [
+        "number" => $number,
+    ]);
+    if($re)
+        $return['status']=2;        //已被注册
+    else
+    {
+        $db->insert("company", [
+            "name" => $name,
+            "phone" => $phone,
+            "mail" => $mail,
+            "address" => $address, 
+            "number" => $number, 
+            "password" => $password
+        ]);
+        $re = $db->get('company',['id'],['number'=> $number]);
+        $id = $re['id'];
+        $token = Token::addToken(0,$id);
+        $return['token'] = $token;
+        $return['status']=1;            //注册成功
+        $return['id']=$id; 
+    }
+    return $return;
+}
+
 function signUpWorker($name,$age,$phone,$experience,$password){
     global $db;
     $re =$db->has("worker", [
@@ -31,7 +58,7 @@ function signUpWorker($name,$age,$phone,$experience,$password){
         $re = $db->get('worker',['id'],['phone'=> $phone]);
         $id = $re['id'];
         addExperience($id,$experience);
-        $token = Token::addToken($id);
+        $token = Token::addToken(1,$id);
         $return['token'] = $token;
         $return['status']=1;            //注册成功
         $return['id']=$id; 
@@ -62,10 +89,10 @@ function login($type,$phone,$password){
                     ]); 
                     $ret['id'] = $id;
                     $ret['status'] = 1;   //1代表成功
-                    $ret['token'] = Token::addToken($id);
+                    $ret['token'] = Token::addToken(1,$id);
                 }
                 else
-                    $ret['status'] = -1;   //1代表失败
+                    $ret['status'] = -1;   //-1代表失败
             } 
             return $ret;
             break;
