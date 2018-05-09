@@ -66,7 +66,7 @@ function signUpWorker($name,$age,$phone,$experience,$password){
     return $return;
 }
 
-function loginWorker($type,$phone,$password){
+function loginWorker($phone,$password){
     global $db;
     $res = $db->has("worker",[
         "phone" => $phone
@@ -94,7 +94,7 @@ function loginWorker($type,$phone,$password){
      return $ret;
 }
 
-function loginCampany($type,$number,$password){
+function loginCampany($number,$password){
     global $db;
     $res = $db->has("company",[
         "number" => $number
@@ -114,7 +114,7 @@ function loginCampany($type,$number,$password){
              ]); 
              $ret['id'] = $id;
              $ret['status'] = 1;   //1代表成功
-             $ret['token'] = Token::addToken(1,$id);
+             $ret['token'] = Token::addToken(0,$id);
          }
          else
              $ret['status'] = -1;   //-1代表失败
