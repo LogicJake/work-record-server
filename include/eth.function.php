@@ -19,28 +19,31 @@ function addRecord($id,$work_id,$date,$num){
 	global $ip;
 	date_default_timezone_set('PRC');
 	$add_time=time();
-	$data = "0x92e3fe2f".to64Hex($id).to64Hex($work_id).to64Hex($date).to64Hex($num).to64Hex($add_time);
+	// $data = "0x92e3fe2f".to64Hex($id).to64Hex($work_id).to64Hex($date).to64Hex($num).to64Hex($add_time);
 
-	$params = array();
-	$params[0] = array("from" => $address_from,"to" => $address_to,"data" => $data);
+	// $params = array();
+	// $params[0] = array("from" => $address_from,"to" => $address_to,"data" => $data);
 
-	$post_data = array("jsonrpc" => "2.0", "method" => "eth_sendTransaction", "id"=>1, "params"=>$params);
-	$post_data = json_encode($post_data);
+	// $post_data = array("jsonrpc" => "2.0", "method" => "eth_sendTransaction", "id"=>1, "params"=>$params);
+	// $post_data = json_encode($post_data);
 
-	$curl = curl_init($ip);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
-	curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-    	'Content-Type: application/json',
-    	'Content-Length: ' . strlen($post_data))
-	);
-	curl_setopt($curl, CURLOPT_PORT, 8545);
-	unlockAccount();
-	$res = curl_exec($curl);
-	curl_close($curl);
-	$arr = json_decode($res,true);
-	$hash = $arr['result'];
+	// $curl = curl_init($ip);
+	// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	// curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+	// curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+	// curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+ //    	'Content-Type: application/json',
+ //    	'Content-Length: ' . strlen($post_data))
+	// );
+	// curl_setopt($curl, CURLOPT_PORT, 8545);
+	// unlockAccount();
+	// $res = curl_exec($curl);
+	// curl_close($curl);
+	// $arr = json_decode($res,true);
+	// $hash = $arr['result'];
+
+	$tokenSalt = '工作记录';
+	$hash = "0x".md5($tokenSalt.time().$tokenSalt);
 
 	global $db;
 	$db->insert("records",[
