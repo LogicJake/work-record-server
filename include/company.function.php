@@ -13,7 +13,7 @@ function addWages($id,$wages){
     $db->insert("task_wages", $data);
 }
 
-function releaseWork($address,$phone,$wages,$house,$welfare){
+function releaseWork($address,$phone,$wages,$house,$welfare,$start_time){
     global $db;
     $res=$db->insert("task",[
         "address" => $address,
