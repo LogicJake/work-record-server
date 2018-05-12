@@ -182,3 +182,26 @@ http://api.logicjake.xyz/work-record/?_action=releaseWork
     }
 }
 ```
+## 4. 记录工时（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=addRecord
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+|   id     | 1 |
+|date|20180601|
+|num|10|
+|work_id|1|
+### 说明
+* id为工人id号
+* date为工作日期，8位
+* num工时数  
+* work_id工作id
+### 返回值
+#### 成功，返回交易hash值
+```
+{
+    "code": 0,
+    "data":0x7df8d9227e6024e7e98066eaa889f732
+}
+```
