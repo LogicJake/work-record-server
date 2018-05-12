@@ -168,10 +168,12 @@ http://api.logicjake.xyz/work-record/?_action=releaseWork
 |wages|[{"type":"家装主材安装","wage":100},{"type":"电器安装维修","wage":110}]|
 |house|板房|
 |welfare|高温补贴|
+|start_time|20180611|
 ### 说明
 * wages为招聘工种和对应工资  
 * house为住房条件
-* welfare为福利 
+* welfare为福利   
+* start_time开始时间
 ### 返回值
 #### 成功，status=1
 ```
