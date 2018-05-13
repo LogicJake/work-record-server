@@ -78,6 +78,59 @@ http://api.logicjake.xyz/work-record/?_action=login
   }
 }
 ```
+## 3. 民工查看工作记录（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=getRecord
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| id       | 1       |
+### 说明
+* id为工人id
+### 返回值
+#### 成功，记录数组
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526126055",
+      "hash": "0x3ed2bba2c298750ab21b0e069dfd6b0c4470c7d380036b6884381e59d4d6ad90"
+    },
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526126135",
+      "hash": "0x24d94683b96819efcfc20b7f9a32328bf84211c376db8ed0d5c9f4a5b18790dc"
+    },
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526128876",
+      "hash": "16bcfd908c475b20247bff7f43f20c72"
+    },
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526128906",
+      "hash": "0x7df8d9227e6024e7e98066eaa889f732"
+    }
+  ]
+}
+```
+#### 越权访问
+```
+{
+  "code": 1,
+  "msg": "No authority"
+}
+```
 # 公司接口
 ## 1. 公司注册（get）
 ### 接口地址
