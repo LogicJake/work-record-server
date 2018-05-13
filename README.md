@@ -78,6 +78,147 @@ http://api.logicjake.xyz/work-record/?_action=login
   }
 }
 ```
+## 3. 民工查看工作记录（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=getRecord
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | 121212adadasdad      |
+### 返回值
+#### 成功，返回记录数组
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526126055",
+      "hash": "0x3ed2bba2c298750ab21b0e069dfd6b0c4470c7d380036b6884381e59d4d6ad90"
+    },
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526126135",
+      "hash": "0x24d94683b96819efcfc20b7f9a32328bf84211c376db8ed0d5c9f4a5b18790dc"
+    },
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526128876",
+      "hash": "16bcfd908c475b20247bff7f43f20c72"
+    },
+    {
+      "work_id": "1",
+      "num": "1",
+      "date": "20180601",
+      "add_time": "1526128906",
+      "hash": "0x7df8d9227e6024e7e98066eaa889f732"
+    }
+  ]
+}
+```
+#### 越权访问
+```
+{
+  "code": 1,
+  "msg": "No authority"
+}
+```
+## 4. 查看工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=listWork
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| type       | 家装主材安装       |
+### 说明
+* type为工种类型
+### 返回值
+#### 成功返回工作数组
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "task_id": "2",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    },
+    {
+      "task_id": "3",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    },
+    {
+      "task_id": "4",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    },
+    {
+      "task_id": "5",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    }
+  ]
+}
+```
 # 公司接口
 ## 1. 公司注册（get）
 ### 接口地址
