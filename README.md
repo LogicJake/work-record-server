@@ -81,14 +81,8 @@ http://api.logicjake.xyz/work-record/?_action=login
 ## 3. 民工查看工作记录（get）
 ### 接口地址
 http://api.logicjake.xyz/work-record/?_action=getRecord
-### 接口参数
-| key        | value   |
-| :------:   | :-----: |
-| id       | 1       |
-### 说明
-* id为工人id
 ### 返回值
-#### 成功，记录数组
+#### 成功，返回记录数组
 ```
 {
   "code": 0,

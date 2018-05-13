@@ -112,6 +112,7 @@ function calHour($id){
 
 function getRecord($id){
 	global $db;
+	global $uid;
 	$res = $db->select("records",[
 		"work_id",
 		"num",
@@ -119,7 +120,7 @@ function getRecord($id){
 		"add_time",
 		"hash"
 	],[
-		"worker_id" => $id
+		"worker_id" => $uid
 	]);
 	return $res;
 }
