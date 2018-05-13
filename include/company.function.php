@@ -19,7 +19,8 @@ function releaseWork($address,$phone,$wages,$house,$welfare,$start_time){
         "address" => $address,
         "phone" => $phone,
         "house" => $house,
-        "welfare" => $welfare
+        "welfare" => $welfare,
+        "start_time" => $start_time
     ]);
     $id = $db->id();
     addWages($id,$wages);
