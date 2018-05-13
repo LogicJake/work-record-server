@@ -109,3 +109,17 @@ function calHour($id){
 	curl_close($curl);
 	return $res;
 }
+
+function getRecord($id){
+	global $db;
+	$res = $db->select("records",[
+		"work_id",
+		"num",
+		"date",
+		"add_time",
+		"hash"
+	],[
+		"worker_id" => $id
+	]);
+	return $res;
+}
