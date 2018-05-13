@@ -15,12 +15,14 @@ function addWages($id,$wages){
 
 function releaseWork($address,$phone,$wages,$house,$welfare,$start_time){
     global $db;
+    global $uid;
     $res=$db->insert("task",[
         "address" => $address,
         "phone" => $phone,
         "house" => $house,
         "welfare" => $welfare,
-        "start_time" => $start_time
+        "start_time" => $start_time,
+        "company_id" => $uid
     ]);
     $id = $db->id();
     addWages($id,$wages);
