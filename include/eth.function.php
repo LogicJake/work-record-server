@@ -110,7 +110,7 @@ function calHour($id){
 	return $res;
 }
 
-function getRecord($id){
+function getRecord(){
 	global $db;
 	global $uid;
 	$res = $db->select("records",[
