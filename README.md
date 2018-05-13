@@ -129,6 +129,96 @@ http://api.logicjake.xyz/work-record/?_action=getRecord
   "msg": "No authority"
 }
 ```
+## 4. 查看工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=listWork
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| type       | 家装主材安装       |
+### 说明
+* type为工种类型
+### 返回值
+#### 成功返回工作数组
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "task_id": "2",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    },
+    {
+      "task_id": "3",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    },
+    {
+      "task_id": "4",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    },
+    {
+      "task_id": "5",
+      "field": "家装主材安装",
+      "wage": "100",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": "",
+      "company_id": "3",
+      "comapny_info": {
+        "name": "南京航空航天大学",
+        "phone": "13322222223",
+        "mail": "8888888@qq.com",
+        "address": "南京江宁",
+        "number": "91320102716209711G"
+      }
+    }
+  ]
+}
+```
 # 公司接口
 ## 1. 公司注册（get）
 ### 接口地址

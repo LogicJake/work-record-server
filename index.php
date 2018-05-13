@@ -12,9 +12,9 @@ require_once './include/token.class.php';
 
 
 // white list
-$actionList = ['signUp','addRecord','calHour','login','releaseWork','unlockAccount','getRecord'];          //所有action列表
+$actionList = ['signUp','addRecord','calHour','login','releaseWork','unlockAccount','getRecord','listWork'];          //所有action列表
 
-$noTokenList = ['signUp','addRecord','calHour','login','unlockAccount'];         //不需要token的action
+$noTokenList = ['signUp','addRecord','calHour','login','unlockAccount','listWork'];         //不需要token的action
 
 $companyTokenList = ['releaseWork','addRecord'];         //只能公司进行的操作
 
@@ -35,7 +35,7 @@ if (in_array($_GET['_action'], $noTokenList)){//如果是不需要token的 actio
         Result::error('no token');
     }
     
-    if(Token::userid($_GET['token']) < 1){//token不存在终止
+    if(Token::userid($_GET['token']) < 1){              //token不存在终止
         Result::error('token wrong');
     }
 
