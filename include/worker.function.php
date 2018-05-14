@@ -1,12 +1,23 @@
 <?php
-function listWork($type){
+function listWork($type,$page){
+    $page_num = 10;
+    $start_page = ($page-1)*$page_num;
     global $db;
+    $count = $db->count("task_wages", [
+        "field" => $type,
+    ]);
+    $max_page = $count/$page_num;
+    if($page<$max_page)
+        $ret['finished'] = FALSE;
+    else
+        $ret['finished'] = TRUE;
     $res = $db->select("task_wages", [
         "task_id",
         "field",
         "wage"
     ],[
-        "field" => $type
+        "field" => $type,
+        "LIMIT" => [ $start_page,  $start_page+$page_num]
     ]);
     foreach($res as $k => $v){
         $task = $db->get("task",[
@@ -32,5 +43,6 @@ function listWork($type){
         $v['comapny_info'] = $company;
         $res[$k]=$v;
     }
-   return $res;
+    $ret['work'] = $res;
+    return $ret;
 }
