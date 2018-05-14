@@ -53,3 +53,30 @@ function handleApply($apply_id,$sure){
     $ret['status'] = 1;
     return $ret;
 }
+
+function allMyWork(){
+    global $uid,$db;
+    $res = $db->select("task",[
+        "id",
+        "address",
+        "phone",
+        "house",
+        "welfare",
+        "start_time"
+    ],[
+        "company_id" => $uid
+    ]);
+    return $res;
+}
+
+function allApplyByWorkId($work_id){
+    global $uid,$db;
+    $res = $db->select("apply",[
+        "id",
+        "worker_id",
+        "status"
+    ],[
+        "work_id" => $work_id
+    ]);
+    return $res;
+}

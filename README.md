@@ -402,3 +402,59 @@ http://api.logicjake.xyz/work-record/?_action=handleApply
     }
 }
 ```
+## 6. 公司获取自己发布的所有工作信息（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=allMyWork
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf       |
+
+### 返回值
+#### 成功
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "id": "2",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": ""
+    },
+    {
+      "id": "3",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": ""
+    }
+  ]
+}
+```
+## 7. 公司查看某个工作的所有应聘信息（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=allApplyByWorkId
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf|
+|work_id|2|
+### 返回值
+#### 成功，id字段为处理申请时的supply_id
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "id": "6",
+      "worker_id": "2",
+      "status": "1"
+    }
+  ]
+}
+```
+
