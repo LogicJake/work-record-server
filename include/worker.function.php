@@ -46,3 +46,22 @@ function listWork($type,$page){
     $ret['work'] = $res;
     return $ret;
 }
+
+function applyJob($work_id){
+    global $uid,$db;
+    $res = $db->has("apply",[
+        "work_id" => $work_id,
+        "worker_id" => $uid
+    ]);
+        if($res)
+        $ret['status'] = -1;
+    else{
+        $db->insert("apply",[
+            "work_id" => $work_id,
+            "worker_id" => $uid,
+            "status" => 0
+        ]);
+        $ret['status'] = 1;
+    }
+    return $ret;
+}

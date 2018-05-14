@@ -206,6 +206,35 @@ http://api.logicjake.xyz/work-record/?_action=listWork
   }
 }
 ```
+## 5. 申请工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=applyJob
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| work_id       | 1|
+| token       | 998asjasjajsj|
+### 说明
+* work_id为申请的工作id  
+### 返回值
+#### 申请成功,status为1
+```
+{
+  "code": 0,
+  "data": {
+    "status": 1
+  }
+}
+```
+#### 重复申请,status为-1
+```
+{
+  "code": 0,
+  "data": {
+    "status": -1
+  }
+}
+```
 ## 2. 公司登陆（get）
 ### 接口地址
 http://api.logicjake.xyz/work-record/?_action=login
