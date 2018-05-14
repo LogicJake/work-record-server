@@ -285,6 +285,7 @@ http://api.logicjake.xyz/work-record/?_action=addRecord
 |date|20180601|
 |num|10|
 |work_id|1|
+|token|121212hashajsjajsj|
 ### 说明
 * id为工人id号
 * date为工作日期，8位
