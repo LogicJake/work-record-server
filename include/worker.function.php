@@ -7,7 +7,8 @@ function getTaskInfo($id){
         "house",
         "welfare",
         "start_time",
-        "company_id"
+        "company_id",
+        "add_time"
     ],[
         "id" => $id
     ]);
@@ -16,7 +17,7 @@ function getTaskInfo($id){
 
 function getCompanyInfo($id){
     global $db;
-    $db->get("company",[
+    $company = $db->get("company",[
             "name",
             "phone",
             "mail",
@@ -25,6 +26,7 @@ function getCompanyInfo($id){
         ],[
             "id" => $id
         ]);
+    return $company;
 }
 
 function listWork($type,$page){
@@ -45,7 +47,8 @@ function listWork($type,$page){
         "wage"
     ],[
         "field" => $type,
-        "LIMIT" => [ $start_page,  $start_page+$page_num]
+        "LIMIT" => [ $start_page,  $start_page+$page_num],
+        "ORDER"=>["task_id"=>"DESC"]
     ]);
     foreach($res as $k => $v){
         $task = getTaskInfo($v['task_id']);

@@ -158,6 +158,7 @@ http://api.logicjake.xyz/work-record/?_action=listWork
         "welfare": "高温补贴",
         "start_time": "",
         "company_id": "3",
+        "add_time": "",
         "comapny_info": {
           "name": "南京航空航天大学",
           "phone": "13322222223",
@@ -176,6 +177,7 @@ http://api.logicjake.xyz/work-record/?_action=listWork
         "welfare": "高温补贴",
         "start_time": "",
         "company_id": "3",
+        "add_time": "",
         "comapny_info": {
           "name": "南京航空航天大学",
           "phone": "13322222223",
@@ -194,6 +196,7 @@ http://api.logicjake.xyz/work-record/?_action=listWork
         "welfare": "高温补贴",
         "start_time": "",
         "company_id": "3",
+        "add_time": "",
         "comapny_info": {
           "name": "南京航空航天大学",
           "phone": "13322222223",
