@@ -49,6 +49,8 @@ function listWork($type,$page){
 
 function applyJob($work_id){
     global $uid,$db;
+    date_default_timezone_set('PRC');
+    $add_time = time();
     $res = $db->has("apply",[
         "work_id" => $work_id,
         "worker_id" => $uid
@@ -59,7 +61,8 @@ function applyJob($work_id){
         $db->insert("apply",[
             "work_id" => $work_id,
             "worker_id" => $uid,
-            "status" => 0
+            "status" => 0,
+            "add_time" => $add_time
         ]);
         $ret['status'] = 1;
     }
