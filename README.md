@@ -235,6 +235,55 @@ http://api.logicjake.xyz/work-record/?_action=applyJob
   }
 }
 ```
+## 6. 查看自己申请的工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=listApplyJob
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | 12kjajdjkadjkajkd|
+| page       | 1|
+### 说明
+* page为页数，从1开始，默认每页10条数据
+### 返回值
+#### 成功返回工作数组，finished字段表明是否结束，true则不需要再请求下一页，按时间从大到小排序。  
+status：0：已申请，1：公司录用，-1：公司拒绝。
+```
+{
+  "code": 0,
+  "data": {
+    "finished": true,
+    "apply_work": [
+      {
+        "work_id": "3",
+        "status": "0",
+        "add_time": "1526295656",
+        "task_info": {
+          "address": "南京",
+          "phone": "13222222",
+          "house": "板房",
+          "welfare": "高温补贴",
+          "start_time": "",
+          "company_id": "3"
+        }
+      },
+      {
+        "work_id": "2",
+        "status": "0",
+        "add_time": "1526295635",
+        "task_info": {
+          "address": "南京",
+          "phone": "13222222",
+          "house": "板房",
+          "welfare": "高温补贴",
+          "start_time": "",
+          "company_id": "3"
+        }
+      }
+    ]
+  }
+}
+```
 ## 2. 公司登陆（get）
 ### 接口地址
 http://api.logicjake.xyz/work-record/?_action=login

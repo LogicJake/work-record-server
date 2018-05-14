@@ -1,4 +1,32 @@
 <?php
+function getTaskInfo($id){
+    global $db;
+    $task = $db->get("task",[
+        "address",
+        "phone",
+        "house",
+        "welfare",
+        "start_time",
+        "company_id"
+    ],[
+        "id" => $id
+    ]);
+    return $task;
+}
+
+function getCompanyInfo($id){
+    global $db;
+    $db->get("company",[
+            "name",
+            "phone",
+            "mail",
+            "address",
+            "number"
+        ],[
+            "id" => $id
+        ]);
+}
+
 function listWork($type,$page){
     $page_num = 10;
     $start_page = ($page-1)*$page_num;
@@ -20,26 +48,9 @@ function listWork($type,$page){
         "LIMIT" => [ $start_page,  $start_page+$page_num]
     ]);
     foreach($res as $k => $v){
-        $task = $db->get("task",[
-            "address",
-            "phone",
-            "house",
-            "welfare",
-            "start_time",
-            "company_id"
-        ],[
-            "id" => $v['task_id']
-        ]);
+        $task = getTaskInfo($v['task_id']);
         $v = array_merge($v,$task);
-        $company = $db->get("company",[
-            "name",
-            "phone",
-            "mail",
-            "address",
-            "number"
-        ],[
-            "id" => $task['company_id']
-        ]);
+        $company = getCompanyInfo($task['company_id']);
         $v['comapny_info'] = $company;
         $res[$k]=$v;
     }
@@ -66,5 +77,36 @@ function applyJob($work_id){
         ]);
         $ret['status'] = 1;
     }
+    return $ret;
+}
+
+function listApplyJob($page){
+    $page_num = 10;
+    $start_page = ($page-1)*$page_num;
+    global $uid,$db;
+    $res = $db->select("apply",[
+        "work_id",
+        "status",
+        "add_time"
+    ],[
+        "worker_id" => $uid,
+        "LIMIT" => [$start_page,$start_page+$page_num],
+        "ORDER"=>["add_time"=>"DESC"]
+    ]);
+    foreach($res as $k => $v){
+        $task = getTaskInfo($v['work_id']);
+        $v['task_info'] = $task;
+        $res[$k]=$v;
+    }
+
+    $count = $db->count("apply", [
+        "worker_id" => $uid
+    ]);
+    $max_page = $count/$page_num;
+    if($page<$max_page)
+        $ret['finished'] = FALSE;
+    else
+        $ret['finished'] = TRUE;
+    $ret['apply_work'] = $res;
     return $ret;
 }
