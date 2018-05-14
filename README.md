@@ -380,3 +380,25 @@ http://api.logicjake.xyz/work-record/?_action=addRecord
     "data":0x7df8d9227e6024e7e98066eaa889f732
 }
 ```
+## 5. 公司处理应聘信息（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=handleApply
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf       |
+|apply_id|1|
+|sure|1|
+### 说明
+* apply_id为申请id  
+* sure：1接受，-1不接受
+### 返回值
+#### 成功，status=1
+```
+{
+    "code": 0,
+    "data": {
+        "status": 1
+    }
+}
+```

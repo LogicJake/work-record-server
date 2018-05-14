@@ -32,3 +32,24 @@ function releaseWork($address,$phone,$wages,$house,$welfare,$start_time){
     $ret['status'] = 1;
     return $ret;
 }
+
+function handleApply($apply_id,$sure){
+    global $db;
+    if($sure==1){
+        $db-> update("apply",[
+            "status"=> 1
+        ],[
+            "id"=>$apply_id
+        ]);
+
+    }
+    else{
+        $db-> update("apply",[
+            "status"=> -1
+        ],[
+            "id"=>$apply_id
+        ]);
+    }
+    $ret['status'] = 1;
+    return $ret;
+}

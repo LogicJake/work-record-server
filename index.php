@@ -12,11 +12,11 @@ require_once './include/token.class.php';
 
 
 // white list
-$actionList = ['signUp','addRecord','calHour','login','releaseWork','unlockAccount','getRecord','listWork','applyJob','listApplyJob'];          //所有action列表
+$actionList = ['signUp','addRecord','calHour','login','releaseWork','unlockAccount','getRecord','listWork','applyJob','listApplyJob','handleApply'];          //所有action列表
 
 $noTokenList = ['signUp','calHour','login','unlockAccount','listWork'];         //不需要token的action
 
-$companyTokenList = ['releaseWork','addRecord'];         //只能公司进行的操作
+$companyTokenList = ['releaseWork','addRecord','handleApply'];         //只能公司进行的操作
 
 $workerTokenList = ['getRecord','applyJob','listApplyJob'];         //只能工人进行的操作
 
