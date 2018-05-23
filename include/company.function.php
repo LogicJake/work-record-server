@@ -78,5 +78,12 @@ function allApplyByWorkId($work_id){
     ],[
         "work_id" => $work_id
     ]);
+    foreach ($res as $key => $value) {
+        $name = $db->get("worker","name",[
+        "id"=>$res[$key]["worker_id"]
+        ]);
+        $res[$key]["name"] = $name;
+        $res[$key]["work_id"] = $work_id;
+    }
     return $res;
 }
