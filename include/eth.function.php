@@ -152,6 +152,19 @@ function getRecord(){
 	]);
 	return $res;
 }
+function getworkids(){
+	global $db;
+	global $uid;
+	$res = $db->select("apply",[
+		"work_id",
+	],[
+		"worker_id" => $uid,
+		"GROUP" => "work_id"
+	]);
+	// var_dump($res);
+	// die();
+	return $res;
+}
 
 
 
