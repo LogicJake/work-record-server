@@ -14,13 +14,13 @@ require_once './include/token.class.php';
 
 
 // white list
-$actionList = ['signUp','addRecord','calHour','login','releaseWork','unlockAccount','getRecord','listWork'];          //所有action列表
+$actionList = ['signUp','addRecord','calHour','login','releaseWork','unlockAccount','getRecord','listWork','applyJob','listApplyJob','handleApply','allMyWork','allApplyByWorkId','getRecordsBy2Id'];          //所有action列表
 
-$noTokenList = ['signUp','addRecord','calHour','login','unlockAccount','listWork'];         //不需要token的action
+$noTokenList = ['signUp','calHour','login','unlockAccount','listWork','getRecordsBy2Id'];         //不需要token的action
 
-$companyTokenList = ['releaseWork','addRecord'];         //只能公司进行的操作
+$companyTokenList = ['releaseWork','addRecord','handleApply','allMyWork','allApplyByWorkId'];         //只能公司进行的操作
 
-$workerTokenList = ['getRecord'];         //只能工人进行的操作
+$workerTokenList = ['getRecord','applyJob','listApplyJob'];         //只能工人进行的操作
 
 if (!isset($_GET['_action'])) {
     Result::error('missing _action');

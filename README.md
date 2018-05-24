@@ -135,125 +135,156 @@ http://api.logicjake.xyz/work-record/?_action=listWork
 ### 接口参数
 | key        | value   |
 | :------:   | :-----: |
-| type       | 家装主材安装       |
+| type       | 家装主材安装|
+| page       | 1|
 ### 说明
-* type为工种类型
+* type为工种类型  
+* page为页数，从1开始，默认每页10条数据
 ### 返回值
-#### 成功返回工作数组
+#### 成功返回工作数组，finished字段表明是否结束，true则不需要再请求下一页
 ```
 {
   "code": 0,
-  "data": [
-    {
-      "task_id": "2",
-      "field": "家装主材安装",
-      "wage": "100",
-      "address": "南京",
-      "phone": "13222222",
-      "house": "板房",
-      "welfare": "高温补贴",
-      "start_time": "",
-      "company_id": "3",
-      "comapny_info": {
-        "name": "南京航空航天大学",
-        "phone": "13322222223",
-        "mail": "8888888@qq.com",
-        "address": "南京江宁",
-        "number": "91320102716209711G"
+  "data": {
+    "finished": false,
+    "work": [
+      {
+        "task_id": "2",
+        "field": "家装主材安装",
+        "wage": "100",
+        "address": "南京",
+        "phone": "13222222",
+        "house": "板房",
+        "welfare": "高温补贴",
+        "start_time": "",
+        "company_id": "3",
+        "add_time": "",
+        "comapny_info": {
+          "name": "南京航空航天大学",
+          "phone": "13322222223",
+          "mail": "8888888@qq.com",
+          "address": "南京江宁",
+          "number": "91320102716209711G"
+        }
+      },
+      {
+        "task_id": "3",
+        "field": "家装主材安装",
+        "wage": "100",
+        "address": "南京",
+        "phone": "13222222",
+        "house": "板房",
+        "welfare": "高温补贴",
+        "start_time": "",
+        "company_id": "3",
+        "add_time": "",
+        "comapny_info": {
+          "name": "南京航空航天大学",
+          "phone": "13322222223",
+          "mail": "8888888@qq.com",
+          "address": "南京江宁",
+          "number": "91320102716209711G"
+        }
+      },
+      {
+        "task_id": "4",
+        "field": "家装主材安装",
+        "wage": "100",
+        "address": "南京",
+        "phone": "13222222",
+        "house": "板房",
+        "welfare": "高温补贴",
+        "start_time": "",
+        "company_id": "3",
+        "add_time": "",
+        "comapny_info": {
+          "name": "南京航空航天大学",
+          "phone": "13322222223",
+          "mail": "8888888@qq.com",
+          "address": "南京江宁",
+          "number": "91320102716209711G"
+        }
       }
-    },
-    {
-      "task_id": "3",
-      "field": "家装主材安装",
-      "wage": "100",
-      "address": "南京",
-      "phone": "13222222",
-      "house": "板房",
-      "welfare": "高温补贴",
-      "start_time": "",
-      "company_id": "3",
-      "comapny_info": {
-        "name": "南京航空航天大学",
-        "phone": "13322222223",
-        "mail": "8888888@qq.com",
-        "address": "南京江宁",
-        "number": "91320102716209711G"
-      }
-    },
-    {
-      "task_id": "4",
-      "field": "家装主材安装",
-      "wage": "100",
-      "address": "南京",
-      "phone": "13222222",
-      "house": "板房",
-      "welfare": "高温补贴",
-      "start_time": "",
-      "company_id": "3",
-      "comapny_info": {
-        "name": "南京航空航天大学",
-        "phone": "13322222223",
-        "mail": "8888888@qq.com",
-        "address": "南京江宁",
-        "number": "91320102716209711G"
-      }
-    },
-    {
-      "task_id": "5",
-      "field": "家装主材安装",
-      "wage": "100",
-      "address": "南京",
-      "phone": "13222222",
-      "house": "板房",
-      "welfare": "高温补贴",
-      "start_time": "",
-      "company_id": "3",
-      "comapny_info": {
-        "name": "南京航空航天大学",
-        "phone": "13322222223",
-        "mail": "8888888@qq.com",
-        "address": "南京江宁",
-        "number": "91320102716209711G"
-      }
-    }
-  ]
+    ]
+  }
 }
 ```
-# 公司接口
-## 1. 公司注册（get）
+## 5. 申请工作（get）
 ### 接口地址
-http://api.logicjake.xyz/work-record/?_action=signUp
+http://api.logicjake.xyz/work-record/?_action=applyJob
 ### 接口参数
 | key        | value   |
 | :------:   | :-----: |
-| type       | 0       |
-| name       | 南京航空航天大学    |
-| phone      | 1332222222 |
-| mail       |    8888888@qq.com  |
-|address|南京江宁|
-|number|91320102716209811G|
-| password   | abcdef    |
+| work_id       | 1|
+| token       | 998asjasjajsj|
 ### 说明
-* type固定值为0
+* work_id为申请的工作id  
 ### 返回值
-#### 成功，返回id和token，status=1
+#### 申请成功,status为1
 ```
 {
-    "code": 0,
-    "data": {
-        "token": "e6971f7a692cbaa8b37aa7ad32875aaf",
-        "status": 1,
-        "id": "1"
-    }
+  "code": 0,
+  "data": {
+    "status": 1
+  }
 }
 ```
-#### 已经被注册，status=2
+#### 重复申请,status为-1
 ```
 {
-    "code": 0,
-    "data": {
-        "status": 2
-    }
+  "code": 0,
+  "data": {
+    "status": -1
+  }
+}
+```
+## 6. 查看自己申请的工作（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=listApplyJob
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | 12kjajdjkadjkajkd|
+| page       | 1|
+### 说明
+* page为页数，从1开始，默认每页10条数据
+### 返回值
+#### 成功返回工作数组，finished字段表明是否结束，true则不需要再请求下一页，按时间从大到小排序。  
+status：0：已申请，1：公司录用，-1：公司拒绝。
+```
+{
+  "code": 0,
+  "data": {
+    "finished": true,
+    "apply_work": [
+      {
+        "work_id": "3",
+        "status": "0",
+        "add_time": "1526295656",
+        "task_info": {
+          "address": "南京",
+          "phone": "13222222",
+          "house": "板房",
+          "welfare": "高温补贴",
+          "start_time": "",
+          "company_id": "3"
+        }
+      },
+      {
+        "work_id": "2",
+        "status": "0",
+        "add_time": "1526295635",
+        "task_info": {
+          "address": "南京",
+          "phone": "13222222",
+          "house": "板房",
+          "welfare": "高温补贴",
+          "start_time": "",
+          "company_id": "3"
+        }
+      }
+    ]
+  }
 }
 ```
 ## 2. 公司登陆（get）
@@ -335,6 +366,7 @@ http://api.logicjake.xyz/work-record/?_action=addRecord
 |date|20180601|
 |num|10|
 |work_id|1|
+|token|121212hashajsjajsj|
 ### 说明
 * id为工人id号
 * date为工作日期，8位
@@ -348,3 +380,81 @@ http://api.logicjake.xyz/work-record/?_action=addRecord
     "data":0x7df8d9227e6024e7e98066eaa889f732
 }
 ```
+## 5. 公司处理应聘信息（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=handleApply
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf       |
+|apply_id|1|
+|sure|1|
+### 说明
+* apply_id为申请id  
+* sure：1接受，-1不接受
+### 返回值
+#### 成功，status=1
+```
+{
+    "code": 0,
+    "data": {
+        "status": 1
+    }
+}
+```
+## 6. 公司获取自己发布的所有工作信息（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=allMyWork
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf       |
+
+### 返回值
+#### 成功
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "id": "2",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": ""
+    },
+    {
+      "id": "3",
+      "address": "南京",
+      "phone": "13222222",
+      "house": "板房",
+      "welfare": "高温补贴",
+      "start_time": ""
+    }
+  ]
+}
+```
+## 7. 公司查看某个工作的所有应聘信息（get）
+### 接口地址
+http://api.logicjake.xyz/work-record/?_action=allApplyByWorkId
+### 接口参数
+| key        | value   |
+| :------:   | :-----: |
+| token       | e6971f7a692cbaa8b37aa7ad32875aaf|
+|work_id|2|
+### 返回值
+#### 成功，id字段为处理申请时的supply_id
+```
+{
+  "code": 0,
+  "data": [
+    {
+      "id": "6",
+      "worker_id": "2",
+      "status": "1"
+    }
+  ]
+}
+```
+

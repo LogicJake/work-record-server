@@ -2,8 +2,8 @@
 
 require_once './include/worker.function.php';
 
-if(isset($_GET['type'],$_GET['page'])){
-	$res = listWork($_GET['type'],$_GET['page']);
+if(isset($_GET['work_id'])){
+	$res = applyJob($_GET['work_id']);
 	Result::success($res);
 }
 else
