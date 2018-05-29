@@ -1,6 +1,6 @@
 <?php
-$address_from = "0x9d81524cd6b6d6600c273615eae83334269c29a1";		//call address
-$address_to  = "0x1627239df0790173a497aba52a3e78f7d8e02e22";			//contact address
+$address_from = "0x5f8592241755d68a6d7c165ae51636b2056338d5";		//call address
+$address_to  = "0xd5cab0b7bbac280e14879199f213976610c3d5c9";			//contact address
 $ip = "http://localhost";
 
 function to64Hex($data){
@@ -83,59 +83,73 @@ function unlockAccount($time=50){
 	curl_close($curl);
 }
 
-function getRecordsBy2Id($worker_id,$work_id){
+function getRecordsBy2Id($work_id){
 
-	global $address_to;
-	global $ip;
+	// global $address_to;
+	// global $ip;
+	global $uid;
 
-	$rdata = array();
-	$page = 1;
-	$finished = false;
-	while(!$finished){
-		$data = "0xa61d9c00".to64Hex($worker_id).to64Hex($work_id).to64Hex($page);
-		$params = array();
-		$params[0] = array("to" => $address_to,"data" => $data);
-		$params[1] = "latest";
+	// $rdata = array();
+	// $page = 1;
+	// $finished = false;
+	// while(!$finished){
+	// 	$data = "0xa61d9c00".to64Hex($uid).to64Hex($work_id).to64Hex($page);
+	// 	$params = array();
+	// 	$params[0] = array("to" => $address_to,"data" => $data);
+	// 	$params[1] = "latest";
 
-		$post_data = array("jsonrpc" => "2.0", "method" => "eth_call", "id"=>3, "params"=>$params);
-		$post_data = json_encode($post_data);
+	// 	$post_data = array("jsonrpc" => "2.0", "method" => "eth_call", "id"=>3, "params"=>$params);
+	// 	$post_data = json_encode($post_data);
 
-		$curl = curl_init($ip);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-	    	'Content-Type: application/json',
-	    	'Content-Length: ' . strlen($post_data))
-		);
-		curl_setopt($curl, CURLOPT_PORT, 8545);
-		$res = curl_exec($curl);
-		curl_close($curl);
+	// 	$curl = curl_init($ip);
+	// 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	// 	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+	// 	curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+	// 	curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+	//     	'Content-Type: application/json',
+	//     	'Content-Length: ' . strlen($post_data))
+	// 	);
+	// 	curl_setopt($curl, CURLOPT_PORT, 8545);
+	// 	$res = curl_exec($curl);
+	// 	curl_close($curl);
 
-		$arr = json_decode($res,true);
-		$hash = substr($arr['result'],2);
-		if(hexdec(substr($hash,64,64))==1)
-			$finished = true;
+	// 	$arr = json_decode($res,true);
+	// 	$hash = substr($arr['result'],2);
+	// 	if(hexdec(substr($hash,64,64))==1)
+	// 		$finished = true;
 
-		$length = hexdec(substr($hash,128,64));
+	// 	$length = hexdec(substr($hash,128,64));
 
-		$str = substr(hexDecode(substr($hash,192,64)),0,$length);
+	// 	$str = substr(hexDecode(substr($hash,192,64)),0,$length);
 
 
-		$arr = explode(";",$str);
-		for ($i=1; $i < count($arr); $i++) { 
-			$arr2 = explode(",",$arr[$i]);
-			$tmp['date'] = $arr2[0];
-        	$tmp['num'] = $arr2[1];
-        	$tmp['add_time'] = $arr2['2'];
-        	array_push($rdata,$tmp);
-		}
+	// 	$arr = explode(";",$str);
+	// 	for ($i=1; $i < count($arr); $i++) { 
+	// 		$arr2 = explode(",",$arr[$i]);
+	// 		$tmp['date'] = $arr2[0];
+ //        	$tmp['num'] = $arr2[1];
+ //        	$tmp['add_time'] = $arr2['2'];
+ //        	array_push($rdata,$tmp);
+	// 	}
 
-		$page += 1;
+	// 	$page += 1;
 
-	}
+	// }
 
-	return $rdata;
+	// return $rdata;
+
+	global $db;
+	$res = $db->select("records",[
+		"num",
+		"date",
+		"add_time",
+	],[
+		"worker_id" => $uid,
+		"work_id" => $uid
+	]);
+	return $res;
+
+
 }
 
 function getRecord(){
@@ -153,17 +167,59 @@ function getRecord(){
 	return $res;
 }
 function getworkids(){
-	global $db;
-	global $uid;
-	$res = $db->select("apply",[
-		"work_id",
-	],[
-		"worker_id" => $uid,
-		"GROUP" => "work_id"
-	]);
-	// var_dump($res);
-	// die();
-	return $res;
+	// global $db;
+	 global $uid;
+	// $res = $db->select("apply",[
+	// 	"work_id",
+	// ],[
+	// 	"worker_id" => $uid,
+	// 	"GROUP" => "work_id"
+	// ]);
+	// // var_dump($res);
+	// // die();
+	// return $res;
+
+
+	global $address_to;
+	global $ip;
+
+	$rdata = array();
+
+	$data = "0xd745452e".to64Hex($uid);
+	$params = array();
+	$params[0] = array("to" => $address_to,"data" => $data);
+	$params[1] = "latest";
+
+	$post_data = array("jsonrpc" => "2.0", "method" => "eth_call", "id"=>3, "params"=>$params);
+	$post_data = json_encode($post_data);
+
+	$curl = curl_init($ip);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+	    	'Content-Type: application/json',
+	    	'Content-Length: ' . strlen($post_data))
+	);
+	curl_setopt($curl, CURLOPT_PORT, 8545);
+	$res = curl_exec($curl);
+	curl_close($curl);
+
+	$arr = json_decode($res,true);
+	$hash = substr($arr['result'],2);
+
+	$length = hexdec(substr($hash,64,64));
+	$str = substr(hexDecode(substr($hash,128)),0,$length);
+
+	$arr = explode(",",$str);
+	for ($i=1; $i < count($arr); $i++) { 
+		$tmp['work_id'] = $i;
+  //       $tmp['num'] = $arr2[1];
+  //       $tmp['add_time'] = $arr2['2'];
+         array_push($rdata,$tmp);
+	}
+
+	return $rdata;
 }
 
 
