@@ -6,6 +6,6 @@ $db = new Medoo([
     'database_name' => 'work_record',
     'server' => 'localhost',
     'username' => 'root',
-    'password' => '835410808',
+    'password' => '',
     'charset' => 'utf8'
 ]);

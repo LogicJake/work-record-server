@@ -113,3 +113,87 @@ function listApplyJob($page){
     $ret['apply_work'] = $res;
     return $ret;
 }
+
+function getrecommand()
+{
+    global $db,$uid;
+    $allexp =['装修施工', '建筑施工', '家装主材安装', '门窗玻璃安装', '隔墙吊顶', '家具软装维修', '电器安装维修', '家政服务', '管道疏通', '园林绿化', '路桥建设', '其他'];
+
+    foreach ($allexp as $keyi => $valuei) {
+        foreach ($allexp as $keyj => $valuej) {
+            $relaexp[$valuei][$valuej]=0;
+        }
+
+    }
+    $worker = $db->select('worker_experience',
+        'user_id'
+        // 'field'
+    ,[
+        'GROUP'=>'user_id'
+    ]);
+    $worker_exp=[];
+    foreach ($worker as $key => $value) {
+        // var_dump($value);
+        $re = $db->select('worker_experience',
+        [
+            'user_id',
+            'field'
+        ]
+        ,[
+            'user_id'=>$value,
+            'GROUP'=>'field'
+        ]);
+        foreach ($re as $keyi => $valuei) {
+            // var_dump($valuei['user_id']);
+            foreach ($re as $keyj => $valuej){
+                if($keyj>$keyi)
+                {
+                    if($valuei['field']==$valuej['field'])
+                    {
+    
+                    }else{
+                        // var_dump($valuei['user_id'].' ppppppppp'.$valuei['field'].' '.$valuej['field'].'  '.$relaexp[$valuei['field']][$valuej['field']]);
+                        $relaexp[$valuei['field']][$valuej['field']]+=1;
+                        $relaexp[$valuej['field']][$valuei['field']]+=1;
+                        if($valuei['field']=='隔墙吊顶'&&$valuej['field']=='建筑施工')
+                        {
+                            // var_dump('ppppppppp'.$valuei['field'].' '.$valuej['field'].'  '.$relaexp[$valuei['field']][$valuej['field']]);
+                        }
+    
+                    }
+
+                }
+                // var_dump($relaexp[$valuej['field']][$valuei['field']]);
+            }
+            # code...
+            // var_dump($valuei['field'],$value);
+        }
+    }
+    foreach ($relaexp as $key => $value) {
+        arsort($relaexp[$key]);
+    }
+    $wexp = $db->select('worker_experience',
+        // 'user_id'
+        'field'
+    ,[
+        'user_id' => $uid,
+        'GROUP'=>'field'
+    ]);
+    $re=[];
+    foreach ($wexp as $key => $value) {
+        $i=0;
+            foreach ($relaexp[$value] as $key1 => $value1) {
+
+                if($value1>0)
+                {
+                    array_push($re,$key1);
+                }
+                $i++;
+                if($i>3)
+                    break;
+            }
+
+    }
+    $re = array_unique($re);
+    return $re;
+}
